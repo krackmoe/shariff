@@ -150,11 +150,15 @@ _Shariff.prototype = {
             var $shareText = '<span class="share_text">' + self.getLocalized(service, 'shareText');
 
             var $shareLink = $('<a>')
+              .attr('name',service.name)
               .attr('href', service.shareUrl)
               .append($shareText);
 
             if(service.width){
                 $shareLink.data('width',service.width);
+            }
+            if(service.clickAction){
+                $shareLink.data('clickAction', service.clickAction);
             }
             if (service.popup) {
                 $shareLink.attr('rel', 'popup');
@@ -188,12 +192,20 @@ _Shariff.prototype = {
         $buttonList.on('click', '[rel="iframe"]', function(e) {
             e.preventDefault();
             var url = $(this).attr('href');
+            var name = $(this).attr('name');
+            var clickAction = null;
+            if($(this).data('clickAction')){
+                clickAction = $(this).data('clickAction');
+            }
             if($(this).data('width')){
                 $(this).parent().width($(this).data('width'));
             }
             $(this).replaceWith(
-                '<iframe src="' + url +'"></iframe>'
+                '<iframe name="' + name + '" src="' + url +'" ></iframe>'
             );
+            if(clickAction!=null){
+                $('iframe[name='+name+']').on('load',clickAction);
+            }
         });
 
         $socialshareElement.append($buttonList);
