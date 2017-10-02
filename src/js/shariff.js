@@ -36,7 +36,6 @@ var Shariff = function(element, options) {
         availableServices.forEach(function(availableService) {
             availableService = availableService(self);
             if (availableService.name === serviceName) {
-                console.log('availableServiceName: ' + availableService.name);
                 service = availableService;
                 return null;
             }
@@ -224,7 +223,6 @@ Shariff.prototype = {
 
         var $buttonList = $('<ul>').addClass(themeClass).addClass(orientationClass).addClass(serviceCountClass);
 
-        console.log('services: ' + this.services);
         // add html for service-links
         this.services.forEach(function(service) {
             var $li = $('<li class="shariff-button">').addClass(service.name);

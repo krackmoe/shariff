@@ -82,6 +82,16 @@ module.exports = function(grunt) {
             }
         },
 
+        jshint: {
+            options: {
+                jshintrc: '.jshintrc'
+            },
+            files: [
+                'src/js/*.js',
+                'src/js/services/*.js'
+            ]
+        },
+
         less: {
             options: {
                 banner: '<%= meta.banner %>',
@@ -173,13 +183,14 @@ module.exports = function(grunt) {
 
     grunt.loadNpmTasks('grunt-browserify');
     grunt.loadNpmTasks('grunt-contrib-copy');
+    grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-contrib-less');
     grunt.loadNpmTasks('grunt-contrib-connect');
     grunt.loadNpmTasks('grunt-connect-proxy');
     grunt.loadNpmTasks('grunt-hapi');
 
     grunt.registerTask('test', ['jshint']);
-    grunt.registerTask('build', ['less:demo', 'less:dist', 'less:dist_min', 'browserify:dist_complete_min', 'browserify:dist_min']);
+    grunt.registerTask('build', ['test', 'less:demo', 'less:dist', 'less:dist_min', 'browserify:dist_complete_min', 'browserify:dist_min']);
     grunt.registerTask('demo', ['copy:demo', 'less:demo', 'browserify:demo', 'hapi', 'configureProxies:demo', 'connect']);
     grunt.registerTask('default', ['test', 'demo']);
 };
