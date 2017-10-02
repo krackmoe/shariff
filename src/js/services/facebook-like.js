@@ -38,7 +38,7 @@ module.exports = function(shariff) {
             'tr': 'Facebook\'ta paylaş',
             'zh': '在Facebook上分享',
         },
-        shareUrl: 'http://www.facebook.com/v2.4/plugins/like.php?href=' + fbEncUrl + shariff.getReferrerTrack() + '&width&layout=standard&action=like&show_faces=true&share=false&height=80',
+        shareUrl: 'https://www.facebook.com/v2.4/plugins/like.php?href=' + fbEncUrl + shariff.getReferrerTrack() + '&width&layout=standard&action=like&show_faces=true&share=false&height=80',
         customContent: "<div id='fb-root'></div>" +
         "<script>(function(d, s, id) {" +
             "var js, fjs = d.getElementsByTagName(s)[0];" +
